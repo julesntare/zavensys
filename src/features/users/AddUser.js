@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Button from "../../components/Button";
 import TextField from "../../components/TextField";
@@ -8,6 +8,7 @@ import { v4 as uuidv4 } from "uuid";
 import CheckBox from "../../components/CheckBox";
 
 const AddUser = () => {
+  const users = useSelector((store) => store.users);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [values, setValues] = useState({
@@ -18,11 +19,26 @@ const AddUser = () => {
     isConfirmed: false,
   });
 
+  const [isRegistered, setIsRegistered] = useState(false);
+
   const handleCheck = (e) => {
     setValues({ ...values, isConfirmed: !values.isConfirmed });
   };
 
-  const handleAddUser = () => {
+  const handleAddUser = (e) => {
+    e.preventDefault();
+    const emailFound = users.findIndex(
+      (attendee) => attendee.email === values.email
+    );
+    const mobileFound = users.findIndex(
+      (attendee) => attendee.mobileNo === values.mobileNo
+    );
+
+    if (emailFound !== -1 || mobileFound !== -1) {
+      setIsRegistered(true);
+      return;
+    }
+
     setValues({
       firstName: "",
       lastName: "",
@@ -47,6 +63,14 @@ const AddUser = () => {
 
   return (
     <div className="mt-10 max-w-xl mx-auto">
+      {isRegistered && (
+        <div
+          class="bg-red-100 rounded-lg py-5 px-6 mb-4 text-base text-red-700"
+          role="alert"
+        >
+          Whoops - This Attendee already registered!
+        </div>
+      )}
       <TextField
         label="First Name"
         value={values.firstName}
