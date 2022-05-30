@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/zavensys/static/css/main.47e2fdcd.css",
+    "main.js": "/zavensys/static/js/main.bb62b565.js",
+    "static/js/787.6b47be5c.chunk.js": "/zavensys/static/js/787.6b47be5c.chunk.js",
+    "index.html": "/zavensys/index.html",
+    "main.47e2fdcd.css.map": "/zavensys/static/css/main.47e2fdcd.css.map",
+    "main.bb62b565.js.map": "/zavensys/static/js/main.bb62b565.js.map",
+    "787.6b47be5c.chunk.js.map": "/zavensys/static/js/787.6b47be5c.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.47e2fdcd.css",
+    "static/js/main.bb62b565.js"
+  ]
+}
