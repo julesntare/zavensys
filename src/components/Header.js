@@ -12,7 +12,7 @@ const Header = () => {
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between py-4">
             <div>
-              <Link to="/">ZaVenSy</Link>
+              <Link to="/">ZaVenSys</Link>
             </div>
 
             <div className="hidden sm:flex sm:items-center">
@@ -38,11 +38,11 @@ const Header = () => {
 
             <div className="hidden sm:flex sm:items-center">
               <span className="text-gray-800 text-sm font-semibold mr-4">
-                Attendees{" "}
+                <Link to="/users/confirmed/true">Attendees </Link>{" "}
                 <b className="border px-2 bg-green-300">{confirmed.length}</b>
               </span>
               <span className="text-gray-800 text-sm font-semibold px-4 py-1">
-                Not Confirmed{" "}
+                <Link to="/users/confirmed/false">Not Confirmed</Link>{" "}
                 <b className="border px-2 bg-gray-300">
                   {users.length - confirmed.length}
                 </b>

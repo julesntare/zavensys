@@ -1,7 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import Button from "../../components/Button";
 
 const UserList = () => {
   const users = useSelector((store) => store.users);
@@ -48,9 +47,21 @@ const UserList = () => {
 
   return (
     <>
-      <Link to="/add-user">
-        <Button>Add Attendee</Button>
-      </Link>
+      <h2
+        className="
+                  text-dark
+                  mb-6
+                  uppercase
+                  font-bold
+                  text-center
+                  text-[32px]
+                  sm:text-[40px]
+                  lg:text-[36px]
+                  xl:text-[40px]
+                  "
+      >
+        List of All Attendees
+      </h2>
       <div className="grid gap-5 md:grid-cols-2">
         {users.length ? (
           renderCard()

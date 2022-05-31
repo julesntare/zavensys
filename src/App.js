@@ -4,6 +4,7 @@ import Contact from "./components/Contact";
 import Header from "./components/Header";
 import AddUser from "./features/users/AddUser";
 import EditUser from "./features/users/EditUser";
+import FilteredAttendees from "./features/users/FilteredAttendees";
 import UserDetailed from "./features/users/UserDetailed";
 import UserList from "./features/users/UserList";
 
@@ -18,6 +19,10 @@ function App() {
         <Route path="/add-user" element={<AddUser />} />
         <Route path="/get-user/:id" element={<UserDetailed />} />
         <Route path="/edit-user/:id" element={<EditUser />} />
+        <Route
+          path="/users/confirmed/:isConfirmed"
+          element={<FilteredAttendees />}
+        />
         <Route path="/contact" element={<Contact />} />
       </Routes>
     </div>

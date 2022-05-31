@@ -2,16 +2,16 @@ import React from "react";
 
 const Contact = () => {
   return (
-    <section class="bg-white py-20 lg:py-[120px] overflow-hidden relative z-10">
-      <div class="container">
-        <div class="flex flex-wrap lg:justify-between -mx-4">
-          <div class="w-full lg:w-1/2 xl:w-6/12 px-4">
-            <div class="max-w-[570px] mb-12 lg:mb-0">
-              <span class="block mb-4 text-base text-primary font-semibold">
+    <section className="bg-white py-20 lg:py-[120px] overflow-hidden relative z-10">
+      <div className="container">
+        <div className="flex flex-wrap lg:justify-between -mx-4">
+          <div className="w-full lg:w-1/2 xl:w-6/12 px-4">
+            <div className="max-w-[570px] mb-12 lg:mb-0">
+              <span className="block mb-4 text-base text-primary font-semibold">
                 Contact Us
               </span>
               <h2
-                class="
+                className="
                   text-dark
                   mb-6
                   uppercase
@@ -24,21 +24,21 @@ const Contact = () => {
               >
                 GET IN TOUCH WITH US
               </h2>
-              <p class="text-base text-body-color leading-relaxed mb-9">
+              <p className="text-base text-body-color leading-relaxed mb-9">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
                 eius tempor incididunt ut labore et dolore magna aliqua. Ut enim
                 adiqua minim veniam quis nostrud exercitation ullamco
               </p>
             </div>
           </div>
-          <div class="w-full lg:w-1/2 xl:w-5/12 px-4">
-            <div class="bg-white relative rounded-lg p-8 sm:p-12 shadow-lg">
+          <div className="w-full lg:w-1/2 xl:w-5/12 px-4">
+            <div className="bg-white relative rounded-lg p-8 sm:p-12 shadow-lg">
               <form>
-                <div class="mb-6">
+                <div className="mb-6">
                   <input
                     type="text"
                     placeholder="Your Name"
-                    class="
+                    className="
                         w-full
                         rounded
                         py-3
@@ -51,11 +51,11 @@ const Contact = () => {
                         "
                   />
                 </div>
-                <div class="mb-6">
+                <div className="mb-6">
                   <input
                     type="email"
                     placeholder="Your Email"
-                    class="
+                    className="
                         w-full
                         rounded
                         py-3
@@ -68,11 +68,11 @@ const Contact = () => {
                         "
                   />
                 </div>
-                <div class="mb-6">
+                <div className="mb-6">
                   <input
                     type="text"
                     placeholder="Your Phone"
-                    class="
+                    className="
                         w-full
                         rounded
                         py-3
@@ -85,11 +85,11 @@ const Contact = () => {
                         "
                   />
                 </div>
-                <div class="mb-6">
+                <div className="mb-6">
                   <textarea
                     rows="6"
                     placeholder="Your Message"
-                    class="
+                    className="
                         w-full
                         rounded
                         py-3
@@ -106,7 +106,7 @@ const Contact = () => {
                 <div>
                   <button
                     type="submit"
-                    class="
+                    className="
                         w-full
                         text-blue-900
                         bg-primary
@@ -122,7 +122,7 @@ const Contact = () => {
                 </div>
               </form>
               <div>
-                <span class="absolute -top-10 -right-9 z-[-1]">
+                <span className="absolute -top-10 -right-9 z-[-1]">
                   <svg
                     width="100"
                     height="100"
@@ -131,8 +131,8 @@ const Contact = () => {
                     xmlns="http://www.w3.org/2000/svg"
                   >
                     <path
-                      fill-rule="evenodd"
-                      clip-rule="evenodd"
+                      fillRule="evenodd"
+                      clipRule="evenodd"
                       d="M0 100C0 44.7715 0 0 0 0C55.2285 0 100 44.7715 100 100C100 100 100 100 0 100Z"
                       fill="#3056D3"
                     />
