@@ -25,7 +25,21 @@ const EditUser = () => {
     setValues({ ...values, isConfirmed: !values.isConfirmed });
   };
 
-  const handleEditUser = () => {
+  const [isValid, setIsValid] = useState(true);
+
+  const handleEditUser = (e) => {
+    e.preventDefault();
+
+    if (
+      values.firstName.trim() === "" ||
+      values.lastName.trim() === "" ||
+      values.mobileNo.trim() === "" ||
+      values.email.trim() === ""
+    ) {
+      setIsValid(false);
+      return;
+    }
+
     setValues({
       firstName: "",
       lastName: "",
@@ -48,6 +62,14 @@ const EditUser = () => {
 
   return (
     <div className="mt-10 max-w-xl mx-auto">
+      {!isValid && (
+        <div
+          className="bg-red-100 rounded-lg py-5 px-6 mb-4 text-base text-red-700"
+          role="alert"
+        >
+          Whoops - There are some empty fields!
+        </div>
+      )}
       <TextField
         label="First Name"
         value={values.firstName}

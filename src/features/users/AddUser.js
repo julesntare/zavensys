@@ -20,6 +20,7 @@ const AddUser = () => {
   });
 
   const [isRegistered, setIsRegistered] = useState(false);
+  const [isValid, setIsValid] = useState(true);
 
   const handleCheck = (e) => {
     setValues({ ...values, isConfirmed: !values.isConfirmed });
@@ -27,9 +28,21 @@ const AddUser = () => {
 
   const handleAddUser = (e) => {
     e.preventDefault();
+
+    if (
+      values.firstName.trim() === "" ||
+      values.lastName.trim() === "" ||
+      values.mobileNo.trim() === "" ||
+      values.email.trim() === ""
+    ) {
+      setIsValid(false);
+      return;
+    }
+
     const emailFound = users.findIndex(
       (attendee) => attendee.email === values.email
     );
+
     const mobileFound = users.findIndex(
       (attendee) => attendee.mobileNo === values.mobileNo
     );
@@ -69,6 +82,14 @@ const AddUser = () => {
           role="alert"
         >
           Whoops - This Attendee already registered!
+        </div>
+      )}
+      {!isValid && (
+        <div
+          className="bg-red-100 rounded-lg py-5 px-6 mb-4 text-base text-red-700"
+          role="alert"
+        >
+          Whoops - There are some empty fields!
         </div>
       )}
       <TextField
