@@ -1,9 +1,11 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { IUsers } from "../InterfaceUserTypes";
+import { RootState } from "../store";
 
 const Header = () => {
-  const users = useSelector((store) => store.users);
+  const users = useSelector<RootState, IUsers[]>((store) => store.users);
   const confirmed = users.filter((user) => user.isConfirmed === true);
 
   return (

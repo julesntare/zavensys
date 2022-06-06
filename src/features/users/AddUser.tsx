@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { ChangeEvent, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Button from "../../components/Button";
@@ -6,12 +6,15 @@ import TextField from "../../components/TextField";
 import { addUser } from "./UserSlice";
 import { v4 as uuidv4 } from "uuid";
 import CheckBox from "../../components/CheckBox";
+import { RootState } from "../../store";
+import { IUsers } from "../../InterfaceUserTypes";
 
 const AddUser = () => {
-  const users = useSelector((store) => store.users);
+  const users = useSelector<RootState, IUsers[]>((store) => store.users);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [values, setValues] = useState({
+  const [values, setValues] = useState<IUsers>({
+    id: 0,
     firstName: "",
     lastName: "",
     mobileNo: "",
@@ -19,14 +22,14 @@ const AddUser = () => {
     isConfirmed: false,
   });
 
-  const [isRegistered, setIsRegistered] = useState(false);
-  const [isValid, setIsValid] = useState(true);
+  const [isRegistered, setIsRegistered] = useState<boolean>(false);
+  const [isValid, setIsValid] = useState<boolean>(true);
 
-  const handleCheck = (e) => {
+  const handleCheck = (e: ChangeEvent<HTMLInputElement>) => {
     setValues({ ...values, isConfirmed: !values.isConfirmed });
   };
 
-  const handleAddUser = (e) => {
+  const handleAddUser = (e: ChangeEvent<HTMLInputElement>): void => {
     e.preventDefault();
 
     if (
@@ -53,6 +56,7 @@ const AddUser = () => {
     }
 
     setValues({
+      id: 0,
       firstName: "",
       lastName: "",
       mobileNo: "",
@@ -62,7 +66,7 @@ const AddUser = () => {
 
     dispatch(
       addUser({
-        id: uuidv4(),
+        id: Number(uuidv4()),
         firstName: values.firstName,
         lastName: values.lastName,
         mobileNo: values.mobileNo,
@@ -95,28 +99,36 @@ const AddUser = () => {
       <TextField
         label="First Name"
         value={values.firstName}
-        onChange={(e) => setValues({ ...values, firstName: e.target.value })}
+        onChange={(e: ChangeEvent<HTMLInputElement>) =>
+          setValues({ ...values, firstName: e.target.value })
+        }
         inputProps={{ type: "text", placeholder: "John" }}
       />
       <br />
       <TextField
         label="Last Name"
         value={values.lastName}
-        onChange={(e) => setValues({ ...values, lastName: e.target.value })}
+        onChange={(e: ChangeEvent<HTMLInputElement>) =>
+          setValues({ ...values, lastName: e.target.value })
+        }
         inputProps={{ type: "text", placeholder: "Doe" }}
       />
       <br />
       <TextField
         label="Mobile No."
         value={values.mobileNo}
-        onChange={(e) => setValues({ ...values, mobileNo: e.target.value })}
+        onChange={(e: ChangeEvent<HTMLInputElement>) =>
+          setValues({ ...values, mobileNo: e.target.value })
+        }
         inputProps={{ type: "number", placeholder: "0780674459" }}
       />
       <br />
       <TextField
         label="Email"
         value={values.email}
-        onChange={(e) => setValues({ ...values, email: e.target.value })}
+        onChange={(e: ChangeEvent<HTMLInputElement>) =>
+          setValues({ ...values, email: e.target.value })
+        }
         inputProps={{ type: "email", placeholder: "johndoe@gmail.com" }}
       />
       <br />

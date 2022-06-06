@@ -1,17 +1,26 @@
-import React, { useState } from "react";
+import React, { ChangeEvent, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import Button from "../../components/Button";
 import CheckBox from "../../components/CheckBox";
 import TextField from "../../components/TextField";
+import { IUsers } from "../../InterfaceUserTypes";
+import { RootState } from "../../store";
 import { editUser } from "./UserSlice";
 
 const EditUser = () => {
   const dispatch = useDispatch();
-  const params = useParams();
-  const users = useSelector((store) => store.users);
+  const { id } = useParams<{
+    id: string;
+  }>();
+  let paramId = id;
+  const users: IUsers[] = useSelector<RootState, IUsers[]>(
+    (store) => store.users
+  );
   const navigate = useNavigate();
-  const existingUser = users.filter((user) => user.id === params.id);
+  const existingUser: IUsers[] = users.filter(
+    (user: { id: number | undefined }) => user.id === paramId
+  );
   const { firstName, lastName, mobileNo, email, isConfirmed } = existingUser[0];
   const [values, setValues] = useState({
     firstName,
@@ -21,13 +30,13 @@ const EditUser = () => {
     isConfirmed,
   });
 
-  const handleCheck = (e) => {
+  const handleCheck = (e: ChangeEvent<HTMLInputElement>) => {
     setValues({ ...values, isConfirmed: !values.isConfirmed });
   };
 
-  const [isValid, setIsValid] = useState(true);
+  const [isValid, setIsValid] = useState<boolean>(true);
 
-  const handleEditUser = (e) => {
+  const handleEditUser = (e: ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
 
     if (
@@ -49,7 +58,7 @@ const EditUser = () => {
     });
     dispatch(
       editUser({
-        id: params.id,
+        id: Number(paramId),
         firstName: values.firstName,
         lastName: values.lastName,
         mobileNo: values.mobileNo,
@@ -73,28 +82,36 @@ const EditUser = () => {
       <TextField
         label="First Name"
         value={values.firstName}
-        onChange={(e) => setValues({ ...values, firstName: e.target.value })}
+        onChange={(e: ChangeEvent<HTMLInputElement>) =>
+          setValues({ ...values, firstName: e.target.value })
+        }
         inputProps={{ type: "text", placeholder: "John" }}
       />
       <br />
       <TextField
         label="Last Name"
         value={values.lastName}
-        onChange={(e) => setValues({ ...values, lastName: e.target.value })}
+        onChange={(e: ChangeEvent<HTMLInputElement>) =>
+          setValues({ ...values, lastName: e.target.value })
+        }
         inputProps={{ type: "text", placeholder: "Doe" }}
       />
       <br />
       <TextField
         label="Mobile No."
         value={values.mobileNo}
-        onChange={(e) => setValues({ ...values, mobileNo: e.target.value })}
+        onChange={(e: ChangeEvent<HTMLInputElement>) =>
+          setValues({ ...values, mobileNo: e.target.value })
+        }
         inputProps={{ type: "text", placeholder: "0780674459" }}
       />
       <br />
       <TextField
         label="Email"
         value={values.email}
-        onChange={(e) => setValues({ ...values, email: e.target.value })}
+        onChange={(e: ChangeEvent<HTMLInputElement>) =>
+          setValues({ ...values, email: e.target.value })
+        }
         inputProps={{ type: "email", placeholder: "johndoe@gmail.com" }}
       />
       <br />

@@ -1,16 +1,19 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
+import { IUsers } from "../../InterfaceUserTypes";
+import { RootState } from "../../store";
 
 const FilteredAttendees = () => {
-  const users = useSelector((store) => store.users);
-  const params = useParams();
-  params.isConfirmed = JSON.parse(params.isConfirmed);
-
+  const users = useSelector<RootState, IUsers[]>((store) => store.users);
+  let { isConfirmed } = useParams<{
+    isConfirmed: string;
+  }>();
+  let didConfirm: boolean = Boolean(isConfirmed);
   const renderCard = () =>
     users
-      .filter(function (user) {
-        return user.isConfirmed === params.isConfirmed;
+      .filter(function(user) {
+        return user.isConfirmed === didConfirm;
       })
       .map((user) => (
         <div
@@ -68,7 +71,7 @@ const FilteredAttendees = () => {
                   xl:text-[40px]
                   "
       >
-        List of {params.isConfirmed ? "Confirmed" : "Non Confirmed"} Attendees
+        List of {didConfirm ? "Confirmed" : "Non Confirmed"} Attendees
       </h4>
       <div className="grid gap-5 md:grid-cols-2">
         {users.length ? (

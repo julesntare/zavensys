@@ -1,6 +1,6 @@
 import React from "react";
 
-const CheckBox = ({ label, checked, onChange }) => {
+const CheckBox = ({ label, checked, onChange }: any) => {
   return (
     <div className="flex justify-center">
       <div>

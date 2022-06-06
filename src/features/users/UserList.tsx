@@ -1,12 +1,16 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { IUsers } from "../../InterfaceUserTypes";
+import { RootState } from "../../store";
 
 const UserList = () => {
-  const users = useSelector((store) => store.users);
+  const users: IUsers[] = useSelector<RootState, IUsers[]>(
+    (store) => store.users
+  );
 
   const renderCard = () =>
-    users.map((user) => (
+    users.map((user: IUsers) => (
       <div
         className={`${
           user.isConfirmed ? "bg-green-300" : "bg-gray-300"

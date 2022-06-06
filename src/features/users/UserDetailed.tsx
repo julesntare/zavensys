@@ -1,16 +1,22 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, useNavigate, useParams } from "react-router-dom";
+import { IUsers } from "../../InterfaceUserTypes";
+import { RootState } from "../../store";
 import { deleteUser } from "./UserSlice";
 
 const UserDetailed = () => {
   const navigate = useNavigate();
-  const users = useSelector((store) => store.users);
+  const users = useSelector<RootState, IUsers[]>((store) => store.users);
   const dispatch = useDispatch();
-  const params = useParams();
-  const existingUser = users.filter((user) => user.id === params.id);
+  const { id } = useParams<{
+    id: string;
+  }>();
+  let paramId: number = Number(id);
+  const existingUser = users.filter((user) => user.id === paramId);
   const { firstName, lastName, mobileNo, email, isConfirmed } = existingUser[0];
-  const [values] = useState({
+  const [values] = useState<IUsers>({
+    id: paramId,
     firstName,
     lastName,
     mobileNo,
@@ -18,12 +24,8 @@ const UserDetailed = () => {
     isConfirmed,
   });
 
-  const handleDelete = (id) => {
-    dispatch(
-      deleteUser({
-        id,
-      })
-    );
+  const handleDelete = (id: number | undefined) => {
+    dispatch(deleteUser(id));
     navigate("/");
   };
 
@@ -75,7 +77,7 @@ const UserDetailed = () => {
                 <li className="pl-3 pr-4 py-3 flex items-center justify-between text-sm">
                   <div className="w-0 flex-1 flex items-center"></div>
                   <div className="ml-4 flex-shrink-0">
-                    <Link to={`/edit-user/${params.id}`}>
+                    <Link to={`/edit-user/${paramId}`}>
                       <button>
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
@@ -95,7 +97,7 @@ const UserDetailed = () => {
                     </Link>
                     <button
                       className="px-3"
-                      onClick={() => handleDelete(params.id)}
+                      onClick={() => handleDelete(paramId)}
                     >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"

@@ -87,7 +87,7 @@ const Contact = () => {
                 </div>
                 <div className="mb-6">
                   <textarea
-                    rows="6"
+                    rows={6}
                     placeholder="Your Message"
                     className="
                         w-full

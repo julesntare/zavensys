@@ -1,6 +1,6 @@
 import React from "react";
 
-const Button = ({ onClick, children }) => {
+const Button = ({ onClick, children }: any) => {
   return (
     <button
       className="bg-indigo-600 text-white py-2 px-6 my-10 rounded hover:bg-indigo-700"

@@ -1,6 +1,6 @@
 import React from "react";
 
-const TextField = ({ label, inputProps, onChange, value }) => {
+const TextField = ({ label, inputProps, onChange, value }: any) => {
   return (
     <div className="flex flex-col">
       <label className="mb-2 text-base text-gray-800">{label}</label>
