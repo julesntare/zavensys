@@ -19,7 +19,7 @@ const EditUser = () => {
   );
   const navigate = useNavigate();
   const existingUser: IUsers[] = users.filter(
-    (user: { id: number | undefined }) => user.id === paramId
+    (user: { id: string | undefined }) => user.id === paramId
   );
   const { firstName, lastName, mobileNo, email, isConfirmed } = existingUser[0];
   const [values, setValues] = useState({
@@ -58,7 +58,7 @@ const EditUser = () => {
     });
     dispatch(
       editUser({
-        id: Number(paramId),
+        id: paramId,
         firstName: values.firstName,
         lastName: values.lastName,
         mobileNo: values.mobileNo,

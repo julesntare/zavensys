@@ -12,11 +12,10 @@ const UserDetailed = () => {
   const { id } = useParams<{
     id: string;
   }>();
-  let paramId: number = Number(id);
-  const existingUser = users.filter((user) => user.id === paramId);
+  const existingUser = users.filter((user) => user.id === id);
   const { firstName, lastName, mobileNo, email, isConfirmed } = existingUser[0];
   const [values] = useState<IUsers>({
-    id: paramId,
+    id,
     firstName,
     lastName,
     mobileNo,
@@ -24,7 +23,7 @@ const UserDetailed = () => {
     isConfirmed,
   });
 
-  const handleDelete = (id: number | undefined) => {
+  const handleDelete = (id: string | undefined) => {
     dispatch(deleteUser(id));
     navigate("/");
   };
@@ -77,7 +76,7 @@ const UserDetailed = () => {
                 <li className="pl-3 pr-4 py-3 flex items-center justify-between text-sm">
                   <div className="w-0 flex-1 flex items-center"></div>
                   <div className="ml-4 flex-shrink-0">
-                    <Link to={`/edit-user/${paramId}`}>
+                    <Link to={`/edit-user/${id}`}>
                       <button>
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
@@ -95,10 +94,7 @@ const UserDetailed = () => {
                         </svg>
                       </button>
                     </Link>
-                    <button
-                      className="px-3"
-                      onClick={() => handleDelete(paramId)}
-                    >
+                    <button className="px-3" onClick={() => handleDelete(id)}>
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         className="h-6 w-6"

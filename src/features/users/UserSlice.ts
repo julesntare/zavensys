@@ -30,7 +30,7 @@ const userSlice = createSlice({
         existingUser.isConfirmed = isConfirmed;
       }
     },
-    deleteUser: (state: IUsers[], action: { payload: number | undefined }) => {
+    deleteUser: (state: IUsers[], action: { payload: string | undefined }) => {
       const id = action.payload;
       const existingUser: IUsers | undefined = state.find(
         (user) => user.id === id

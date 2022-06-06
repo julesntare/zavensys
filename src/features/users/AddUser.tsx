@@ -14,7 +14,7 @@ const AddUser = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [values, setValues] = useState<IUsers>({
-    id: 0,
+    id: "",
     firstName: "",
     lastName: "",
     mobileNo: "",
@@ -31,7 +31,7 @@ const AddUser = () => {
 
   const handleAddUser = (e: ChangeEvent<HTMLInputElement>): void => {
     e.preventDefault();
-
+    console.log(uuidv4());
     if (
       values.firstName.trim() === "" ||
       values.lastName.trim() === "" ||
@@ -56,7 +56,7 @@ const AddUser = () => {
     }
 
     setValues({
-      id: 0,
+      id: "",
       firstName: "",
       lastName: "",
       mobileNo: "",
@@ -66,7 +66,7 @@ const AddUser = () => {
 
     dispatch(
       addUser({
-        id: Number(uuidv4()),
+        id: uuidv4(),
         firstName: values.firstName,
         lastName: values.lastName,
         mobileNo: values.mobileNo,

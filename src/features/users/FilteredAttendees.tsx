@@ -9,13 +9,13 @@ const FilteredAttendees = () => {
   let { isConfirmed } = useParams<{
     isConfirmed: string;
   }>();
-  let didConfirm: boolean = Boolean(isConfirmed);
-  const renderCard = () =>
-    users
-      .filter(function(user) {
-        return user.isConfirmed === didConfirm;
-      })
-      .map((user) => (
+  let didConfirm: boolean = isConfirmed === "true";
+  const renderCard = () => {
+    const fetchedUsers = users.filter(
+      (user) => user.isConfirmed === didConfirm
+    );
+    return fetchedUsers.length > 0 ? (
+      fetchedUsers.map((user) => (
         <div
           className={`${
             user.isConfirmed ? "bg-green-300" : "bg-gray-300"
@@ -54,7 +54,13 @@ const FilteredAttendees = () => {
             </Link>
           </div>
         </div>
-      ));
+      ))
+    ) : (
+      <p className="text-center col-span-2 text-gray-700 font-semibold">
+        No Attendee Yet
+      </p>
+    );
+  };
 
   return (
     <>
@@ -73,15 +79,7 @@ const FilteredAttendees = () => {
       >
         List of {didConfirm ? "Confirmed" : "Non Confirmed"} Attendees
       </h4>
-      <div className="grid gap-5 md:grid-cols-2">
-        {users.length ? (
-          renderCard()
-        ) : (
-          <p className="text-center col-span-2 text-gray-700 font-semibold">
-            No Attendee Yet
-          </p>
-        )}
-      </div>
+      <div className="grid gap-5 md:grid-cols-2">{renderCard()}</div>
     </>
   );
 };
